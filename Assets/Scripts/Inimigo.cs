@@ -19,8 +19,8 @@ public class Inimigo : MonoBehaviour {
     void Update()
     {
         /*checarChao = Physics2D.Linecast(transform.position, 1 << LayerMask.NameToLayer("Ground"));
-        //GetComponent<Rigidbody2D>().velocity = new Vector2(mov, GetComponent<Rigidbody2D>().velocity.y);
-        checarChao = true;*/
+        GetComponent<Rigidbody2D>().velocity = new Vector2(mov, GetComponent<Rigidbody2D>().velocity.y);
+        */
         if (!checarChao)
         {
             mov *= 1;
