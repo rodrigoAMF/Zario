@@ -13,7 +13,6 @@ public class Player : MonoBehaviour {
     private int numeroVidas;
 
     private double tamanhoMaxBarraVida;
-    private double tamanhoMaxBarraForca;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -24,12 +23,12 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tamanhoMaxBarraVida = 21;
-        tamanhoMaxBarraForca = 21;
         forcaPulo = 200;
         velocidadeMaxima = 2;
         moedas = 0;
         numeroVidas = 3;
         vidaAtual = 100;
+        estaNoChao = true;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         lblNumeroVidas.text = numeroVidas.ToString();
@@ -70,6 +69,32 @@ public class Player : MonoBehaviour {
         } else {
             animator.SetBool("jumping", true);
         }
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            GetComponent<Animator>().SetTrigger("attack");
+
+            Collider2D myCollider = GameObject.Find("attackArea").GetComponent<Collider2D>();
+            int numColliders = 10;
+            Collider2D[] colliders = new Collider2D[numColliders];
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            // Set you filters here according to https://docs.unity3d.com/ScriptReference/ContactFilter2D.html
+            int colliderCount = myCollider.OverlapCollider(contactFilter, colliders);
+
+            for(int i = 0; i < colliderCount; i++) {
+                if(colliders[i].gameObject.tag == "Enemy") {
+                    Destroy(colliders[i].gameObject);
+                }
+            }
+
+            /*Collider2D[] colliders = new Collider2D[3];
+            GameObject.Find("attackArea").gameObject.GetComponent<Collider2D>()
+                .OverlapCollider(new ContactFilter2D(), colliders);
+            for (int i = 0; i < colliders.Length; i++) {
+                if(colliders[i] != null && colliders[i].gameObject.CompareTag("Enemy")) {
+                    Destroy(colliders[i].gameObject);
+                }
+            }*/
+        }
         
     }
 
@@ -90,7 +115,6 @@ public class Player : MonoBehaviour {
         }
         if (collision.gameObject.CompareTag("Enemy")) {
             vidaAtual -= 20;
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(-500, 500));
             Vector3 tamanhoAtual = barraVidaAtual.GetComponent<Transform>().localScale;
             Vector3 novoTamanho = new Vector3((float)(tamanhoMaxBarraVida * (vidaAtual / 100.0)), tamanhoAtual.y, tamanhoAtual.z);
             barraVidaAtual.GetComponent<Transform>().localScale = novoTamanho;
