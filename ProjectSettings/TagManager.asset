@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Plataformas
   - Moeda
+  - enemyCollider
+  - Enemy
+  - Level_begin
   layers:
   - Default
   - TransparentFX
