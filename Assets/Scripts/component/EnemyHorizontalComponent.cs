@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHorizontal : MonoBehaviour {
-    public bool collide;
+public class EnemyHorizontalComponent : MonoBehaviour {
+    EnemyController enemyController;
     Rigidbody2D rb;
-
-    public float movSpeed;
+    public int movementSpeed;
 
 
 	// Use this for initialization
 	void Start () {
+        enemyController = new EnemyController();
         rb = GetComponent<Rigidbody2D>();
+        enemyController.setMovementSpeed(movementSpeed);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        rb.velocity = new Vector2(movSpeed, rb.velocity.y);
-        if (collide) {
+        rb.velocity = new Vector2(enemyController.getMovementSpeed(), rb.velocity.y);
+        if (enemyController.isCollide()) {
             flip();
         }
     }
@@ -25,21 +26,21 @@ public class EnemyHorizontal : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("enemyCollider")) {
-            collide = true;
+            enemyController.setCollide(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("enemyCollider")) {
-            collide = false;
+            enemyController.setCollide(false);
         }
     }
 
     private void flip()
     {
         GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
-        movSpeed *= -1;
-        collide = false;
+        enemyController.setMovementSpeed(enemyController.getMovementSpeed() * -1);
+        enemyController.setCollide(false);
     }
 }
