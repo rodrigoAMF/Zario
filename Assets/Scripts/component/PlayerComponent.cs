@@ -145,4 +145,13 @@ public class PlayerComponent : MonoBehaviour {
             }
         }
     }
+
+    /*public void checkifIsWater()
+    {
+        if (collision.gameObject.CompareTag("Agua"))
+        {
+            //playerController.setNumeroVidas(0);//Gamer Over
+
+        }
+    }*/
 }
