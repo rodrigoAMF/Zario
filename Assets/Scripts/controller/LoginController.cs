@@ -30,4 +30,9 @@ public class LoginController : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu Principal");
     }
+
+    public void loadSignUp()
+    {
+        SceneManager.LoadScene("Tela de Cadastro");
+    }
 }

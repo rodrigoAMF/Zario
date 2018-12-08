@@ -52,9 +52,7 @@ public class Usuarios_DBMock{
         int id = -1;
 
         for (int i = 0; i < this.username.Count; i++) {
-            Debug.Log("Digitado: " + username + " No banco: " + this.username[i] + " iguais? " + string.Equals(this.username[i], username));
             if (string.Equals(this.username[i], username)) {
-                Debug.Log("Encontrou: " + this.id[i] + "|\n");
                 id = this.id[i];
                 break;
             }
