@@ -16,6 +16,7 @@ public class PlayerComponent : MonoBehaviour {
     public Text lblNumeroVidas;
     public GameObject barraVidaAtual;
 
+
     // Use this for initialization
     void Start () {
         playerController = new PlayerController();
@@ -140,6 +141,8 @@ public class PlayerComponent : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P)) {
             animator.SetTrigger("attack");
 
+            /*audio.clip = spinSound;
+            audio.Play();*/
             Collider2D myCollider = GameObject.Find("attackArea").GetComponent<Collider2D>();
             int numColliders = 10;
             Collider2D[] colliders = new Collider2D[numColliders];
