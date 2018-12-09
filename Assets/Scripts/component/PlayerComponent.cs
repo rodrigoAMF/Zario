@@ -15,7 +15,8 @@ public class PlayerComponent : MonoBehaviour {
     public Text lblNumeroMoedas;
     public Text lblNumeroVidas;
     public GameObject barraVidaAtual;
-
+    public AudioClip sound;
+    public AudioSource audio;
 
     // Use this for initialization
     void Start () {
@@ -25,6 +26,7 @@ public class PlayerComponent : MonoBehaviour {
         sp = GetComponent<SpriteRenderer>();
         lblNumeroVidas.text = playerController.getNumeroVidas().ToString();
         transform.position = GameObject.Find("LevelBegin").GetComponent<Transform>().position;
+        audio = gameObject.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -49,6 +51,8 @@ public class PlayerComponent : MonoBehaviour {
         }
         if (collision.gameObject.CompareTag("Moeda")) {
             Destroy(collision.gameObject);
+            audio.clip = sound;
+            audio.Play();
             playerController.setNumeroMoedas(playerController.getNumeroMoedas()+1);
             lblNumeroMoedas.text = playerController.getNumeroMoedas().ToString();
         }
