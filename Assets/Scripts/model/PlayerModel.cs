@@ -26,7 +26,7 @@ public class PlayerModel
         gameMaster = false;
         vidaAtual = 100;
         numeroVidas = 3;
-        forcaPulo = 300;
+        forcaPulo = 225;
         estaNoChao = true;
         doubleJump = false;
         velocidadeMaxima = 2;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerComponent : MonoBehaviour {
     //private PlayerModel player;
@@ -28,7 +29,8 @@ public class PlayerComponent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         playerController.setVelocidadeMovimentoAtual(Input.GetAxis("Horizontal") * playerController.getVelocidadeMaxima());
-        //player.setVelocidadeMovimentoAtual(Input.GetAxis("Horizontal") * player.getVelocidadeMaxima());
+
+        verifyIfIsDead();
 
         verifyIfIsRunning();
 
@@ -41,6 +43,9 @@ public class PlayerComponent : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Level_End")) {
+            SceneManager.LoadScene("LevelConcluido");
+        }
         if (collision.gameObject.CompareTag("Moeda")) {
             Destroy(collision.gameObject);
             playerController.setNumeroMoedas(playerController.getNumeroMoedas()+1);
@@ -55,14 +60,7 @@ public class PlayerComponent : MonoBehaviour {
             playerController.setEstaNoChao(true);
         }
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Agua")) {
-            playerController.setNumeroVidas(playerController.getNumeroVidas() - 1);
-            lblNumeroVidas.text = playerController.getNumeroVidas().ToString();
-            playerController.setNumeroMoedas(0);
-            lblNumeroMoedas.text = playerController.getNumeroMoedas().ToString();
-            GetComponent<Transform>().position = GameObject.Find("LevelBegin").GetComponent<Transform>().position;
-            if (playerController.getNumeroVidas() == 0) {
-                // Game Over
-            }
+            playerDead();
         }
     }
 
@@ -81,6 +79,25 @@ public class PlayerComponent : MonoBehaviour {
             animator.SetBool("running", true);
         } else {
             animator.SetBool("running", false);
+        }
+    }
+
+    private void verifyIfIsDead()
+    {
+        if(transform.position.y < (-1)) {
+            playerDead();
+        }
+    }
+
+    private void playerDead()
+    {
+        playerController.setNumeroVidas(playerController.getNumeroVidas() - 1);
+        lblNumeroVidas.text = playerController.getNumeroVidas().ToString();
+        playerController.setNumeroMoedas(0);
+        lblNumeroMoedas.text = playerController.getNumeroMoedas().ToString();
+        GetComponent<Transform>().position = GameObject.Find("LevelBegin").GetComponent<Transform>().position;
+        if (playerController.getNumeroVidas() == 0) {
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -137,13 +154,4 @@ public class PlayerComponent : MonoBehaviour {
             }
         }
     }
-
-    /*public void checkifIsWater()
-    {
-        if (collision.gameObject.CompareTag("Agua"))
-        {
-            //playerController.setNumeroVidas(0);//Gamer Over
-
-        }
-    }*/
 }

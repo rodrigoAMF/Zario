@@ -12,6 +12,7 @@ TagManager:
   - Agua
   - Caixa
   - Pedras
+  - Level_End
   layers:
   - Default
   - TransparentFX
