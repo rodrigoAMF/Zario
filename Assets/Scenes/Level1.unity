@@ -2765,7 +2765,6 @@ MonoBehaviour:
   lblNumeroMoedas: {fileID: 1305017164}
   lblNumeroVidas: {fileID: 349534099}
   barraVidaAtual: {fileID: 1517830725}
-  sound: {fileID: 0}
   audio: {fileID: 0}
 --- !u!70 &657817728
 CapsuleCollider2D:
@@ -2826,10 +2825,10 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657817724}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 08ac879fd09abbe4db39d43d388feb4f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

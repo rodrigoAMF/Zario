@@ -15,7 +15,7 @@ public class PlayerComponent : MonoBehaviour {
     public Text lblNumeroMoedas;
     public Text lblNumeroVidas;
     public GameObject barraVidaAtual;
-    public AudioClip sound;
+    //public AudioClip sound;
     public AudioSource audio;
 
     // Use this for initialization
@@ -50,11 +50,12 @@ public class PlayerComponent : MonoBehaviour {
             SceneManager.LoadScene("LevelConcluido");
         }
         if (collision.gameObject.CompareTag("Moeda")) {
-            Destroy(collision.gameObject);
-            audio.clip = sound;
+            //audio.clip = sound;
             audio.Play();
+            Destroy(collision.gameObject);
             playerController.setNumeroMoedas(playerController.getNumeroMoedas()+1);
             lblNumeroMoedas.text = playerController.getNumeroMoedas().ToString();
+            
         }
 
     }
