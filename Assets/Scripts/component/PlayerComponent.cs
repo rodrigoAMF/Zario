@@ -54,22 +54,14 @@ public class PlayerComponent : MonoBehaviour {
         if (collision.gameObject.CompareTag("Plataformas") || collision.gameObject.CompareTag("Caixa") || collision.gameObject.CompareTag("Pedras")) {
             playerController.setEstaNoChao(true);
         }
-        if (collision.gameObject.CompareTag("Enemy")) {
-            playerController.setVidaAtual(playerController.getVidaAtual() - 20);
-            Vector3 tamanhoAtual = barraVidaAtual.GetComponent<Transform>().localScale;
-            Vector3 novoTamanho = new Vector3((float)(playerController.getTamanhoMaxBarraVida() * (playerController.getVidaAtual() / 100.0)), tamanhoAtual.y, tamanhoAtual.z);
-            barraVidaAtual.GetComponent<Transform>().localScale = novoTamanho;
-            if (playerController.getVidaAtual() <= 0) {
-                playerController.setNumeroVidas(playerController.getNumeroVidas() - 1);
-                lblNumeroVidas.text = playerController.getNumeroVidas().ToString();
-                playerController.setNumeroMoedas(0);
-                lblNumeroMoedas.text = playerController.getNumeroMoedas().ToString();
-                playerController.setVidaAtual(100);
-                barraVidaAtual.GetComponent<Transform>().localScale = new Vector3((float)playerController.getTamanhoMaxBarraVida(), tamanhoAtual.y, tamanhoAtual.z);
-                GetComponent<Transform>().position = GameObject.Find("LevelBegin").GetComponent<Transform>().position;
-                if (playerController.getNumeroVidas() == 0) {
-                    // Game Over
-                }
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Agua")) {
+            playerController.setNumeroVidas(playerController.getNumeroVidas() - 1);
+            lblNumeroVidas.text = playerController.getNumeroVidas().ToString();
+            playerController.setNumeroMoedas(0);
+            lblNumeroMoedas.text = playerController.getNumeroMoedas().ToString();
+            GetComponent<Transform>().position = GameObject.Find("LevelBegin").GetComponent<Transform>().position;
+            if (playerController.getNumeroVidas() == 0) {
+                // Game Over
             }
         }
     }
