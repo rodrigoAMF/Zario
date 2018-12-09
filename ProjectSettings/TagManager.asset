@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - Level_begin
   - Agua
+  - Caixa
+  - Pedras
   layers:
   - Default
   - TransparentFX

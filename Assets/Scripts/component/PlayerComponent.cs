@@ -51,7 +51,7 @@ public class PlayerComponent : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Plataformas")){
+        if (collision.gameObject.CompareTag("Plataformas") || collision.gameObject.CompareTag("Caixa") || collision.gameObject.CompareTag("Pedras")) {
             playerController.setEstaNoChao(true);
         }
         if (collision.gameObject.CompareTag("Enemy")) {

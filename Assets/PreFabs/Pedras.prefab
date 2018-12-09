@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 68389496864330364}
   m_Layer: 0
   m_Name: Pedras
-  m_TagString: Untagged
+  m_TagString: Pedras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
