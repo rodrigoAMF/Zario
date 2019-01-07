@@ -34,3 +34,7 @@ Contribuições de todos os tipos são bem vindas neste projeto! Fique a vontade
 ## Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
+
+# Agradecimentos
+
+* [Davifo](https://gamelab.live/sobrenos/) por disponibilizar uma [playlist](https://www.youtube.com/playlist?list=PLUur4s1pRGf9jHKo5XAKqP2XyRw35czIK) com um treinamento gratuito e de alta qualidade para quem está dando os primeiros passos com unity.
