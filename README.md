@@ -1,3 +1,5 @@
+# Zario
+
 <p align = "center">
   <img src="https://github.com/rodrigoAMF/Zario/blob/master/imgs/logo-zario.png" alt="Logo Zario" width="200"/>
 </p>                                                                                                     
